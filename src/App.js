@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import styles from "./App.module.css";
+
+import { useState } from "react";
+import Container from "./components/Container";
+import Form from "./components/Form";
+import ExpenseList from "./components/ExpenseList";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+   const [expList, setExpList] = useState([]);
+
+   const updateList = (Datte, Detail, Amount) => {
+      setExpList((prevList) => [
+         ...prevList,
+         { date: Datte, detail: Detail, amount: Amount },
+      ]);
+   };
+
+   return (
+      <Container className={styles.ctr}>
+         <h1>EXPENSE TRACKER</h1>
+         <Form updateList={updateList} />
+         <hr />
+         <ExpenseList expenseList={expList}/>
+      </Container>
+   );
 }
 
 export default App;
