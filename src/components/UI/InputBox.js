@@ -9,6 +9,7 @@ function InputBox(props) {
             value={props.value}
             type={props.type}
             placeholder={props.placeholder}
+            ref={props.Ref}
          />
          <small>{props.errorMsg}</small>
       </div>
